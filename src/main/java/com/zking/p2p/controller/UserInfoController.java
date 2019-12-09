@@ -16,13 +16,23 @@ import java.util.List;
 public class UserInfoController {
     @Autowired
     private IUserInfoService userInfoService;
-   /* @ModelAttribute
-    public void init(Model model){
-        UserInfo userInfos=new UserInfo();
-        model.addAttribute("userInfos",userInfos);
-        System.out.println("init...");
 
-    }*/
+    @RequestMapping(value = "/login")
+    public String login(UserInfo userInfo){
+        String uname=userInfo.getUname();
+        String pwd=userInfo.getPwd();
+        System.out.println(uname);
+        System.out.println(pwd);
+        UserInfo login = userInfoService.login(userInfo);
+//        System.out.println(login);
+        if (login!=null){
+            return "index";
+        }else {
+            return "login";
+        }
+
+
+    }
 
     @RequestMapping(value = "/All")
     @ResponseBody
@@ -30,29 +40,27 @@ public class UserInfoController {
         List<UserInfo> userInfo = userInfoService.selectByPrimaryKey(userinfo);
         return userInfo;
     }
-
+//注册（包括正则）
     @RequestMapping(value = "/zc")
     public String zc(UserInfo userInfo, HttpSession session){
         System.out.println(userInfo);
-        if (userInfo.getPhone()==null) {
+        if (userInfo.getPhone()==""||userInfo.getPhone()==null) {
             String q = "请验证手机号再操作";
             session.setAttribute("iphoneNull", q);
             System.out.println(session.getAttribute("iphoneNull"));
              userInfoService.insert(userInfo);
-            return "index";
-        } else if (userInfo.getPhone()!=null){
-          String iphone=userInfo.getPhone();
-            PhoneZz.zz(iphone, session);
-            if (session.getAttribute("iphone1")==null){
-                System.out.println(userInfo.getPhone());
+            return "login";
+        } else if (userInfo.getPhone()!=null||userInfo.getPhone()!=""){
+            PhoneZz.zz(userInfo.getPhone(), session);
+            if (session.getAttribute("iphone1")!=null){
+                System.out.println(session.getAttribute("iphone1"));
                 return  "zc";
-            }else if(session.getAttribute("iphone1")!=null) {
-                if (session.getAttribute("iphone") == null) {
+            }else if(session.getAttribute("iphone1")==null) {
+                if (session.getAttribute("iphone")==null) {
                     userInfoService.insert2(userInfo);
-                    return "index";
+                    return "login";
                 } else {
                     System.out.println(session.getAttribute("iphone"));
-                    System.out.println(userInfo.getPhone());
                     return "zc";
                 }
             }
@@ -63,7 +71,7 @@ public class UserInfoController {
 
         }
 
-        //既然登录成功了带一个他的级别id*/
+
 
 
 

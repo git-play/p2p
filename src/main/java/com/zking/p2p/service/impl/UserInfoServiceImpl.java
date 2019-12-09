@@ -29,6 +29,11 @@ public class UserInfoServiceImpl implements IUserInfoService {
     }
 
     @Override
+    public UserInfo login(UserInfo record) {
+        return userInfoMapper.login(record);
+    }
+
+    @Override
     public List<UserInfo> selectByPrimaryKey(UserInfo record) {
         return userInfoMapper.selectByPrimaryKey(record);
     }

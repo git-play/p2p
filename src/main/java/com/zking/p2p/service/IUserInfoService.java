@@ -14,6 +14,8 @@ public interface IUserInfoService {
 
     int update(UserInfo record);
 
+    UserInfo login(UserInfo record);
+
 
     List<UserInfo> selectByPrimaryKey(UserInfo record);
 
