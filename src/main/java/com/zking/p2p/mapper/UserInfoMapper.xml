@@ -42,6 +42,9 @@
     <select id="login" resultType="com.zking.p2p.model.UserInfo" parameterType="com.zking.p2p.model.UserInfo">
      SELECT uname,pwd FROM tb_userinfo WHERE uname=#{uname} AND pwd=#{pwd}
     </select>
+  <select id="byName" resultType="com.zking.p2p.model.UserInfo" parameterType="com.zking.p2p.model.UserInfo">
+    SELECT uname FROM tb_userinfo WHERE uname=#{uname}
+  </select>
 
 
 </mapper>

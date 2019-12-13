@@ -19,5 +19,7 @@ public interface IUserInfoService {
 
     List<UserInfo> selectByPrimaryKey(UserInfo record);
 
+    UserInfo byName(UserInfo record);
+
 
 }

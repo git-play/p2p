@@ -16,6 +16,8 @@
     <input type="submit" value="确定">
     <input type="reset" value="重置">
     <a href="${ctx}/UserInfo/login">已有账户？去登录</a>
+    <a href="${ctx}/UserInfo/yx">邮箱</a>
+    <a href="${ctx}/TreeNodeController/toTreeNode">树菜单数据</a>
 </form>
 </body>
 </html>

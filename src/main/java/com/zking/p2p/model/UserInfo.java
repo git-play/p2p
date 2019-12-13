@@ -28,6 +28,7 @@ public class UserInfo {
 
     private Integer creditscore;
 
+
     public UserInfo(Integer uid, String uname, String pwd, String usex, Integer uage, String cardid, String phone, String bankcard, Integer userstate, Integer creditscore) {
         this.uid = uid;
         this.uname = uname;
